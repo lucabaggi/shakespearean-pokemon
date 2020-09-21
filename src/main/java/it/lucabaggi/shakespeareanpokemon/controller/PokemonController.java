@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static net.logstash.logback.argument.StructuredArguments.kv;
+
 @RestController
 @RequestMapping("/pokemon")
 public class PokemonController {
@@ -17,6 +19,7 @@ public class PokemonController {
 
     @GetMapping("/{name}")
     public ResponseEntity<Pokemon> getPokemonInfo(@PathVariable("name") String name) {
+        log.info("Getting Pokemon info", kv("pokemon_name", name));
         Pokemon pokemon = new Pokemon.PokemonBuilder()
                 .withName(name)
                 .withDescription("test")

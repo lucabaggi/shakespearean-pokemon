@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<skip.unit.test>false</skip.unit.test>
@@ -30,6 +31,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback-encoder.version}</version>
 		</dependency>
 
 		<dependency>
