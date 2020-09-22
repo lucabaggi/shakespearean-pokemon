@@ -69,6 +69,55 @@ To run unit and integration tests:
 
 It is possible to skip unit or integration tests using `-Dskip.unit.test=true` or `-Dskip.integration.test=true`
 
+## Swagger documentation
+
+Swagger documentation is available at http://localhost:8080/swagger-ui/
+
+## Monitoring
+
+The project is enabled with Spring Boot Actuator and Micrometer, exposing in particular a Prometheus endpoint. Take a look at:
+
+* `http://localhost:8080/actuator`
+
+* `http://localhost:8080/actuator/prometheus` 
+
+* `http://localhost:8080/actuator/httptrace`
+
+## Logging
+
+The application logs in Json format using the Logback extension [Logstash logback encoder](https://github.com/logstash/logstash-logback-encoder). This produces a log with the following format:
+```
+{
+  "@timestamp": "2020-09-23T00:30:15.497+02:00",
+  "@version": "1",
+  "message": "Started ShakespeareanPokemonApplication in 2.704 seconds (JVM running for 3.036)",
+  "logger_name": "it.lucabaggi.shakespeareanpokemon.ShakespeareanPokemonApplication",
+  "thread_name": "main",
+  "level": "INFO",
+  "level_value": 20000
+}
+```
+All the json fields above can be used to filter and query logs in Kibana dashboard, if available. 
+Other than this, Logstash logback encoder allows to add custom properties using static method `kv` from `StructuredArguments` class, e.g.:
+```
+import static net.logstash.logback.argument.StructuredArguments.*;
+...
+log.debug("Response Status code: {}", response.getStatusCode(), kv("request_id", requestId));
+```
+produces a log with custom field `request_id`:
+```
+{
+  "@timestamp": "2020-09-23T00:30:15.497+02:00",
+  "@version": "1",
+  "message": "Response Status code: 200 OK",
+  "logger_name": "it.lucabaggi.shakespeareanpokemon.RequestResponseLoggingInterceptor",
+  "thread_name": "http-nio-8080-exec-1",
+  "level": "DEBUG",
+  "level_value": 10000,
+  "request_id": "0bf0e934-c91a-49fc-b3e9-c5b56231e778"
+}
+```
+
 ## Continuous Integration
 
 TBD
