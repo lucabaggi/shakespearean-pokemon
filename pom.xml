@@ -17,10 +17,11 @@
 	<properties>
 		<java.version>11</java.version>
 		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+		<springfox.version>3.0.0</springfox.version>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<springcloud.wiremock.version>2.2.4.RELEASE</springcloud.wiremock.version>
-		<springfox.version>3.0.0</springfox.version>
+		<jacoco.version>0.8.5</jacoco.version>
 		<skip.unit.test>false</skip.unit.test>
 		<skip.integration.test>false</skip.integration.test>
 	</properties>
@@ -114,6 +115,47 @@
 								<include>*/integration/**</include>
 							</includes>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>it/lucabaggi/shakespeareanpokemon/ShakespeareanPokemonApplication.class</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/SwaggerConfig.class</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/model/**</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/client/pokeapi/model/**</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/client/funtranslator/model/**</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/client/ClientConfiguration.class</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/client/BeanUtil.class</exclude>
+						<exclude>it/lucabaggi/shakespeareanpokemon/common/ErrorCode.class</exclude>
+					</excludes>
+					<dataFile>${project.build.directory}/jacoco.exec</dataFile>
+					<outputDirectory>${project.build.directory}/jacoco-reports</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
