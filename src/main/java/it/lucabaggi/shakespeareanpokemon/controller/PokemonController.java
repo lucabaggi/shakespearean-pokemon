@@ -18,8 +18,8 @@ public class PokemonController {
     private static final Logger log = LoggerFactory.getLogger(PokemonController.class);
 
     @GetMapping("/{name}")
-    public ResponseEntity<Pokemon> getPokemonInfo(@PathVariable("name") String name) {
-        log.info("Getting Pokemon info", kv("pokemon_name", name));
+    public ResponseEntity<Pokemon> getShakespeareanPokemonInfo(@PathVariable("name") String name) {
+        log.info("Getting Shakespearean Pokemon info", kv("pokemon_name", name));
         Pokemon pokemon = new Pokemon.PokemonBuilder()
                 .withName(name)
                 .withDescription("test")

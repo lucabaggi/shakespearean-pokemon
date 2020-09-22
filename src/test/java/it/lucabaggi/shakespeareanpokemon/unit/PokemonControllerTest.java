@@ -28,7 +28,7 @@ public class PokemonControllerTest {
     @Test
     @DisplayName("Should return pokemon name and description")
     public void shouldReturnOkWithPokemonInfo() {
-        ResponseEntity<Pokemon> response = pokemonController.getPokemonInfo(POKEMON_NAME);
+        ResponseEntity<Pokemon> response = pokemonController.getShakespeareanPokemonInfo(POKEMON_NAME);
         assertTrue(response.getStatusCode().is2xxSuccessful());
 
         Pokemon pokemon = response.getBody();
