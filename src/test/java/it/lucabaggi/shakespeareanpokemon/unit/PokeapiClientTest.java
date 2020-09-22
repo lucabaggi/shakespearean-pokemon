@@ -45,11 +45,10 @@ public class PokeapiClientTest {
     public void shouldReturnPokemonSpecies() {
         mockPokemonSpeciesCall();
         PokemonSpecies pokemonSpecies = pokeapiClient.getPokemonSpecies(POKEMON_NAME);
-        assertTrue(pokemonSpecies.getFlavorTextEntries().size() == 1);
-        FlavorTextEntry flavorTextEntry = pokemonSpecies.getFlavorTextEntries().get(0);
-        assertEquals(FLAVOR_LANGUAGE, flavorTextEntry.getLanguage().getName());
-        assertEquals(FLAVOR_TEXT, flavorTextEntry.getFlavorText());
-        assertEquals(FLAVOR_VERSION, flavorTextEntry.getVersion().getName());
+        assertTrue(pokemonSpecies.getFlavorTextEntries().stream()
+                .anyMatch(e -> e.getLanguage().getName().equalsIgnoreCase(FLAVOR_LANGUAGE)
+                        && e.getVersion().getName().equalsIgnoreCase(FLAVOR_VERSION)
+                        && e.getFlavorText().equalsIgnoreCase(FLAVOR_TEXT)));
     }
 
 
