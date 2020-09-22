@@ -1,1 +1,2 @@
-
+client:
+  pokeapi.basePath: https://pokeapi.co/api/v2
