@@ -7,17 +7,26 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "client.basepath")
 public class ClientConfiguration {
 
-    private Pokeapi pokeapi;
+    private ApiClientConfig pokeapi;
+    private ApiClientConfig funtranslator;
 
-    public Pokeapi getPokeapi() {
+    public ApiClientConfig getPokeapi() {
         return pokeapi;
     }
 
-    public void setPokeapi(Pokeapi pokeapi) {
+    public void setPokeapi(ApiClientConfig pokeapi) {
         this.pokeapi = pokeapi;
     }
 
-    public static final class Pokeapi {
+    public ApiClientConfig getFuntranslator() {
+        return funtranslator;
+    }
+
+    public void setFuntranslator(ApiClientConfig funtranslator) {
+        this.funtranslator = funtranslator;
+    }
+
+    public static final class ApiClientConfig {
 
         private String basePath;
 

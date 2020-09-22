@@ -27,6 +27,12 @@ public class BeanUtil {
         return buildRestTemplate(clientConfiguration.getPokeapi().getBasePath());
     }
 
+    @Bean(value = "funtranslatorRestTemplate")
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public RestTemplate funtranslatorRestTemplate() {
+        return buildRestTemplate(clientConfiguration.getFuntranslator().getBasePath());
+    }
+
     private RestTemplate buildRestTemplate(String basePath) {
         return new RestTemplateBuilder()
                 .rootUri(basePath)

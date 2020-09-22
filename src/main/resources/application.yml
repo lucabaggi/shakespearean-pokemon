@@ -1,2 +1,3 @@
 client:
   pokeapi.basePath: https://pokeapi.co/api/v2
+  funtranslator.basePath: https://api.funtranslations.com
