@@ -17,7 +17,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
 
     @ExceptionHandler(ShakespeareanPokemonException.class)
-    public ResponseEntity<ErrorResponse> shakespeareanPokemonRuntimeException(ShakespeareanPokemonException exception, WebRequest request) {
+    public ResponseEntity<ErrorResponse> shakespeareanPokemonRuntimeException(ShakespeareanPokemonException exception) {
         log.error("An exception occurred: ", exception);
         ErrorResponse response = new ErrorResponse.ErrorResponseBuilder()
                 .withCode(exception.getCode())
@@ -27,7 +27,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(HttpClientErrorException.class)
-    public ResponseEntity<ErrorResponse> remoteServiceException(HttpClientErrorException exception, WebRequest request) {
+    public ResponseEntity<ErrorResponse> remoteServiceException(HttpClientErrorException exception) {
         log.error("A remote service exception occurred: ", exception);
         ErrorResponse response = new ErrorResponse.ErrorResponseBuilder()
                 .withCode(ErrorCode.REMOTE.getCode())

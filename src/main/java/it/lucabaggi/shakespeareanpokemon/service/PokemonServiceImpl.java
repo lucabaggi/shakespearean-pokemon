@@ -31,7 +31,7 @@ public class PokemonServiceImpl implements PokemonService {
                 .filter(textEntry -> textEntry.getVersion().getName().equalsIgnoreCase(DEFAULT_VERSION))
                 .filter(textEntry -> textEntry.getLanguage().getName().equalsIgnoreCase(DEFAULT_LANGUAGE))
                 .findFirst()
-                .orElseThrow(() -> new ShakespeareanPokemonException(ErrorCode.REMOTE.getCode(),
+                .orElseThrow(() -> new ShakespeareanPokemonException(ErrorCode.INTERNAL.getCode(),
                         "Unable to find description for the given Pokemon"))
                 .getFlavorText();
 

@@ -75,7 +75,7 @@ public class PokemonServiceTest {
         ShakespeareanPokemonException exception = assertThrows(ShakespeareanPokemonException.class,
                 () -> pokemonService.getShakespeareanPokemon(WITHOUT_DESCRIPTION_POKEMON_NAME));
 
-        assertEquals(ErrorCode.REMOTE.getCode(), exception.getCode());
+        assertEquals(ErrorCode.INTERNAL.getCode(), exception.getCode());
     }
 
     private void mockSuccessPokemonSpeciesCall() {
