@@ -1,0 +1,7 @@
+active-profile: test
+
+mock-server-basepath: http://localhost:9090
+
+client:
+  pokeapi.basePath: ${mock-server-basepath}
+  funtranslator.basePath: ${mock-server-basepath}

@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "client.basepath")
+@ConfigurationProperties(prefix = "client")
 public class ClientConfiguration {
 
     private ApiClientConfig pokeapi;

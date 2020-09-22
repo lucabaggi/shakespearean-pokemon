@@ -19,6 +19,7 @@
 		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+		<springcloud.wiremock.version>2.2.4.RELEASE</springcloud.wiremock.version>
 		<skip.unit.test>false</skip.unit.test>
 		<skip.integration.test>false</skip.integration.test>
 	</properties>
@@ -48,6 +49,12 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-contract-wiremock</artifactId>
+			<version>${springcloud.wiremock.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
