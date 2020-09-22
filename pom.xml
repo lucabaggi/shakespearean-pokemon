@@ -20,6 +20,7 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<springcloud.wiremock.version>2.2.4.RELEASE</springcloud.wiremock.version>
+		<springfox.version>3.0.0</springfox.version>
 		<skip.unit.test>false</skip.unit.test>
 		<skip.integration.test>false</skip.integration.test>
 	</properties>
@@ -41,6 +42,11 @@
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox.version}</version>
 		</dependency>
 
 		<dependency>
