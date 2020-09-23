@@ -41,7 +41,7 @@ jobs:
           path: target/surefire-reports
       - store_artifacts:
           path: target/jacoco-reports
-      - codecov/upload
+      - codecov/upload:
           file: target/jacoco-reports/jacoco.xml
   integration_tests:
     <<: *default-executor
