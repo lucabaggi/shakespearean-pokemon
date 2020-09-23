@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.1.1
+
 references:
   default-executor: &default-executor
     docker:
@@ -38,6 +41,8 @@ jobs:
           path: target/surefire-reports
       - store_artifacts:
           path: target/jacoco-reports
+      - codecov/upload
+          file: target/jacoco-reports/jacoco.xml
   integration_tests:
     <<: *default-executor
     <<: *default-working-directory
