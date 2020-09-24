@@ -1,5 +1,9 @@
 # Shakespearean Pokemon
 
+[![CircleCI](https://circleci.com/gh/lucabaggi/shakespearean-pokemon.svg?style=shield)](https://circleci.com/gh/lucabaggi/shakespearean-pokemon)
+[![codecov](https://codecov.io/gh/lucabaggi/shakespearean-pokemon/branch/master/graph/badge.svg?token=2POXOA4IR6)](undefined)
+
+
 REST API that, given a Pokemon name, returns its Shakespearean description. 
 The project is based on [Spring Boot 2](https://spring.io/projects/spring-boot) framework.
 
@@ -83,6 +87,18 @@ The project is enabled with Spring Boot Actuator and Micrometer, exposing in par
 
 * `http://localhost:8080/actuator/httptrace`
 
+## Tracing
+
+Tracing is enabled using [Zipkin](https://zipkin.io/) and [Sleuth](https://spring.io/projects/spring-cloud-sleuth) Spring cloud libraries.
+
+Zipkin can be run using docker:
+```
+docker run -d -p 9411:9411 openzipkin/zipkin
+```
+
+Once the container is up and running, the Zipkin web interface can be accessed at the following url:
+http://localhost:9411/zipkin/
+
 ## Logging
 
 The application logs in Json format using the Logback extension [Logstash logback encoder](https://github.com/logstash/logstash-logback-encoder). This produces a log with the following format:
@@ -120,4 +136,13 @@ produces a log with custom field `request_id`:
 
 ## Continuous Integration
 
-TBD
+Continuous Integration is implemented using [CircleCI](https://circleci.com/), with following jobs:
+* build
+* unit tests
+* integration tests
+
+After unit tests job code coverage is computed using [Codecov](https://codecov.io/gh/lucabaggi/shakespearean-pokemon) and [Jacoco](https://www.eclemma.org/jacoco/) 
+
+For further details please check CircleCI `config.yml` file placed inside `.circleci` folder
+
+CircleCI pipelines are available [here](https://app.circleci.com/pipelines/github/lucabaggi/shakespearean-pokemon)

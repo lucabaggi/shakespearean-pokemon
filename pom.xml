@@ -21,6 +21,8 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<springcloud.wiremock.version>2.2.4.RELEASE</springcloud.wiremock.version>
+		<springcloud.zipkin.version>2.2.5.RELEASE</springcloud.zipkin.version>
+		<springcloud.sleuth.version>2.2.5.RELEASE</springcloud.sleuth.version>
 		<jacoco.version>0.8.5</jacoco.version>
 		<skip.unit.test>false</skip.unit.test>
 		<skip.integration.test>false</skip.integration.test>
@@ -48,6 +50,16 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+			<version>${springcloud.zipkin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<version>${springcloud.sleuth.version}</version>
 		</dependency>
 
 		<dependency>

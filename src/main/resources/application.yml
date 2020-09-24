@@ -5,6 +5,10 @@ management.endpoint:
   health.show-details: always
 management.metrics.export.prometheus.enabled: true
 
+spring:
+  application.name: shakespearean-pokemon
+  zipkin.base-url: http://localhost:9411/
+
 client:
   pokeapi.basePath: https://pokeapi.co/api/v2
   funtranslator.basePath: https://api.funtranslations.com
