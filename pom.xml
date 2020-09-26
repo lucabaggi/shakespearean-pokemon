@@ -14,15 +14,24 @@
 	<name>shakespearean-pokemon</name>
 	<description>Shakespearean Pokemon description</description>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Hoxton.SR8</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<properties>
 		<java.version>11</java.version>
 		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
 		<springfox.version>3.0.0</springfox.version>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-		<springcloud.wiremock.version>2.2.4.RELEASE</springcloud.wiremock.version>
-		<springcloud.zipkin.version>2.2.5.RELEASE</springcloud.zipkin.version>
-		<springcloud.sleuth.version>2.2.5.RELEASE</springcloud.sleuth.version>
 		<jacoco.version>0.8.5</jacoco.version>
 		<skip.unit.test>false</skip.unit.test>
 		<skip.integration.test>false</skip.integration.test>
@@ -54,12 +63,14 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
-			<version>${springcloud.zipkin.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
-			<version>${springcloud.sleuth.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 
 		<dependency>
@@ -76,7 +87,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-contract-wiremock</artifactId>
-			<version>${springcloud.wiremock.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

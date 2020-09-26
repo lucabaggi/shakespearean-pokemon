@@ -1,5 +1,6 @@
 package it.lucabaggi.shakespeareanpokemon.client.pokeapi;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import it.lucabaggi.shakespeareanpokemon.client.pokeapi.model.PokemonSpecies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +20,7 @@ public class PokeapiClient {
         this.restTemplate = restTemplate;
     }
 
+    @HystrixCommand(commandKey = "getPokemonSpecies")
     public PokemonSpecies getPokemonSpecies(String name) {
         String speciesUri = String.format(SPECIES_URI, name);
         final ResponseEntity<PokemonSpecies> response = restTemplate.getForEntity(speciesUri, PokemonSpecies.class);

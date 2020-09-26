@@ -5,3 +5,12 @@ mock-server-basepath: http://localhost:9090
 client:
   pokeapi.basePath: ${mock-server-basepath}
   funtranslator.basePath: ${mock-server-basepath}
+
+hystrix:
+  command:
+    getPokemonSpecies:
+      execution.isolation.thread.timeoutInMilliseconds: 1000
+      circuitBreaker:
+        errorThresholdPercentage: 50
+        requestVolumeThreshold: 10
+      metrics.healthSnapshot.intervalInMilliseconds: 100

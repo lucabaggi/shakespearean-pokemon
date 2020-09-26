@@ -12,3 +12,18 @@ spring:
 client:
   pokeapi.basePath: https://pokeapi.co/api/v2
   funtranslator.basePath: https://api.funtranslations.com
+
+hystrix:
+  command:
+    getShakespeareanTranslation:
+      execution.isolation.thread.timeoutInMilliseconds: 3000
+      circuitBreaker:
+        errorThresholdPercentage: 50
+        requestVolumeThreshold: 10
+    getPokemonSpecies:
+      execution.isolation.thread.timeoutInMilliseconds: 3000
+      circuitBreaker:
+        errorThresholdPercentage: 50
+        requestVolumeThreshold: 10
+  dashboard:
+    proxy-stream-allow-list: '*'

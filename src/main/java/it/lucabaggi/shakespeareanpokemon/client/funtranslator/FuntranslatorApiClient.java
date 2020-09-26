@@ -1,5 +1,6 @@
 package it.lucabaggi.shakespeareanpokemon.client.funtranslator;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import it.lucabaggi.shakespeareanpokemon.client.funtranslator.model.Translation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,7 @@ public class FuntranslatorApiClient {
         this.restTemplate = restTemplate;
     }
 
+    @HystrixCommand(commandKey = "getShakespeareanTranslation")
     public Translation getShakespeareanTranslation(String text) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);

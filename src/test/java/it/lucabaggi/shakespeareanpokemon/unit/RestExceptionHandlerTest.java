@@ -1,5 +1,8 @@
 package it.lucabaggi.shakespeareanpokemon.unit;
 
+import com.netflix.hystrix.contrib.javanica.command.GenericCommand;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
+import com.netflix.hystrix.exception.HystrixTimeoutException;
 import it.lucabaggi.shakespeareanpokemon.common.ErrorCode;
 import it.lucabaggi.shakespeareanpokemon.common.RestExceptionHandler;
 import it.lucabaggi.shakespeareanpokemon.common.ShakespeareanPokemonException;
@@ -17,7 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RestExceptionHandlerTest {
 
     private static final String ERROR_MESSAGE = "An error message";
-    private static final String EXPECTED_REMOTE_ERROR = "NOT_FOUND";
+    private static final String REMOTE_ERROR_NOT_FOUND = "NOT_FOUND";
+    private static final String REMOTE_ERROR_SERVICE_UNAVAILABLE = "Service Unavailable";
 
     //sut
     private RestExceptionHandler restExceptionHandler;
@@ -45,6 +49,21 @@ public class RestExceptionHandlerTest {
         assertEquals(HttpStatus.BAD_GATEWAY, responseEntity.getStatusCode());
         assertEquals(ErrorCode.REMOTE.getCode(), responseEntity.getBody().getCode());
         assertTrue(responseEntity.getBody().getRemoteError().isPresent());
-        assertEquals(EXPECTED_REMOTE_ERROR, responseEntity.getBody().getRemoteError().get());
+        assertEquals(REMOTE_ERROR_NOT_FOUND, responseEntity.getBody().getRemoteError().get());
+    }
+
+    @Test
+    @DisplayName("Should handle hystrix runtime exception and return proper error response")
+    public void shouldHandleHystrixRuntimeException() {
+        HystrixRuntimeException exception = new HystrixRuntimeException(HystrixRuntimeException.FailureType.TIMEOUT,
+                GenericCommand.class,
+                ERROR_MESSAGE,
+                new RuntimeException(),
+                new RuntimeException());
+        ResponseEntity<ErrorResponse> responseEntity = restExceptionHandler.hystrixRuntimeException(exception);
+        assertEquals(HttpStatus.SERVICE_UNAVAILABLE, responseEntity.getStatusCode());
+        assertEquals(ErrorCode.REMOTE.getCode(), responseEntity.getBody().getCode());
+        assertTrue(responseEntity.getBody().getRemoteError().isPresent());
+        assertEquals(REMOTE_ERROR_SERVICE_UNAVAILABLE, responseEntity.getBody().getRemoteError().get());
     }
 }
