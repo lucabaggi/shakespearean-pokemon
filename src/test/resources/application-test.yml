@@ -9,7 +9,7 @@ client:
 hystrix:
   command:
     getPokemonSpecies:
-      execution.isolation.thread.timeoutInMilliseconds: 1000
+      execution.isolation.thread.timeoutInMilliseconds: 3000
       circuitBreaker:
         errorThresholdPercentage: 50
         requestVolumeThreshold: 10
