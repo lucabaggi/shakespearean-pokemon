@@ -37,7 +37,8 @@ public class PokemonController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Success", response = Pokemon.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorResponse.class),
-            @ApiResponse(code = 502, message = "Bad Gateway", response = ErrorResponse.class)
+            @ApiResponse(code = 502, message = "Bad Gateway", response = ErrorResponse.class),
+            @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorResponse.class)
     })
     public ResponseEntity<Pokemon> getShakespeareanPokemonInfo(
             @ApiParam(name = "name", value = "the Pokemon name") @PathVariable("name") String name) {
